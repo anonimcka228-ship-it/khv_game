@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         /* СТИЛИ ОСТАЛИСЬ БЕЗ ИЗМЕНЕНИЙ (только улучшена адаптивность) */
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -502,7 +503,7 @@
 
                 const html = `
                     <div class="image-area">
-                        <img src="${q.image}" alt="Изображение к вопросу">
+                        <img id="questionImage" src="${q.image}" style="opacity:0; transition:0,3s" alt="Изображение к вопросу">
                     </div>
                     <div class="question-text">${currentIndex+1}. ${q.question}</div>
                     <div class="options" id="optionsContainer">
@@ -513,6 +514,17 @@
                 `;
 
                 dynamicEl.innerHTML = html;
+                const img = document.getElementById("questionImage");
+
+img.onload = () => {
+    img.style.opacity = 1;
+};
+const next = questions[currentIndex + 1];
+
+if (next && next.image) {
+    const preload = new Image();
+    preload.src = next.image;
+}
 
                 document.querySelectorAll('.option-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {

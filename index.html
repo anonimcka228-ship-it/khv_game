@@ -503,7 +503,7 @@
 
                 const html = `
                     <div class="image-area">
-                        <img id="questionImage" src="${q.image}" style="transition:0,3s" alt="Изображение к вопросу">
+                        <img id="questionImage"  alt="Изображение к вопросу">
                     </div>
                     <div class="question-text">${currentIndex+1}. ${q.question}</div>
                     <div class="options" id="optionsContainer">
@@ -515,10 +515,9 @@
 
                 dynamicEl.innerHTML = html;
                 const img = document.getElementById("questionImage");
-                // сначала показываем (на случай кэша)
-                 img.style.opacity = 1;
-                 // потом обновляем источник
-                 img.src = q.image;
+                // принудительно обновляем src
+                img.src = "";
+                img.src = q.image;
                  const next = questions[currentIndex + 1];
 
                  if (next && next.image) {

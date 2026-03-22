@@ -514,11 +514,15 @@
                 `;
 
                 dynamicEl.innerHTML = html;
-                const img = document.getElementById("questionImage");
+const img = document.getElementById("questionImage");
 
-img.onload = () => {
+if (img.complete) {
     img.style.opacity = 1;
-};
+} else {
+    img.onload = () => {
+        img.style.opacity = 1;
+    };
+}
 const next = questions[currentIndex + 1];
 
 if (next && next.image) {

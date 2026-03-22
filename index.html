@@ -514,19 +514,17 @@
                 `;
 
                 dynamicEl.innerHTML = html;
-const img = document.getElementById("questionImage");
+                const img = document.getElementById("questionImage");
+                // сначала показываем (на случай кэша)
+                 img.style.opacity = 1;
+                 // потом обновляем источник
+                 img.src = q.image;
+                 const next = questions[currentIndex + 1];
 
-// сначала показываем (на случай кэша)
-img.style.opacity = 1;
-
-// потом обновляем источник
-img.src = q.image;
-const next = questions[currentIndex + 1];
-
-if (next && next.image) {
-    const preload = new Image();
-    preload.src = next.image;
-}
+                 if (next && next.image) {
+                    const preload = new Image();
+                    preload.src = next.image;
+                }
 
                 document.querySelectorAll('.option-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
